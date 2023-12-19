@@ -1,12 +1,12 @@
 pipeline {
   agent any
   tools { 
-        maven 'maven_3_5_2'  
+        maven 'maven'  
     }
    stages{
     stage('CompileandRunSonarAnalysis') {
             steps {	
-		sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=tech365webapp -Dsonar.organization=tech365webapp -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=254a459ba65f0e4638b087116904f71411445d5f'
+		sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=techcorp -Dsonar.organization=techcorp -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=79ea801c1b86c73940e9ea9842a3db8e74b49857
 			}
     }
 
@@ -33,7 +33,7 @@ stage('Build') {
             steps {
                 script{
 			
-                    docker.withRegistry("https://924338258393.dkr.ecr.us-east-1.amazonaws.com", "ecr:us-east-1:aws-credentials") 
+                    docker.withRegistry("https://251784464071.dkr.ecr.us-east-1.amazonaws.com", "ecr:us-east-1:aws-credentials") 
 			{
                     app.push("latest")
                     }
